@@ -1572,11 +1572,20 @@
     }
 
     .title-shell {
-      padding: 32px 24px 40px;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 30px 18px 34px;
     }
 
     .title-text-block {
-      max-width: none;
+      max-width: min(58%, 240px);
+      margin-left: auto;
+      gap: 10px;
+    }
+
+    .title-cover {
+      background-position: 22% 34%;
+      background-size: cover;
     }
 
     .title-text-block .title-cta {
@@ -1584,14 +1593,28 @@
     }
 
     .news-chip {
-      left: 18px;
-      top: 18px;
-      max-width: calc(100% - 120px);
+      left: 14px;
+      top: 14px;
+      max-width: min(48vw, 168px);
+      padding: 10px 12px;
+      gap: 2px;
+      border-radius: 14px;
+      font-size: 11px;
+    }
+
+    .news-chip .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+    }
+
+    .news-chip .meta {
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .audio-chip {
-      right: 18px;
-      top: 18px;
+      right: 14px;
+      top: 14px;
     }
 
     .dialogue-tray,
@@ -1601,12 +1624,16 @@
     }
 
     .response-panel {
-      bottom: 250px;
+      bottom: 172px;
+      max-height: min(42vh, 320px);
+      overflow-y: auto;
+      align-content: start;
+      padding-right: 4px;
     }
 
     .dialogue-tray {
-      bottom: 74px;
-      padding: 18px;
+      bottom: 64px;
+      padding: 16px 16px 18px;
     }
 
     .narration-panel {
@@ -1614,24 +1641,199 @@
       right: auto;
       transform: translateX(-50%);
       width: min(88%, 460px);
-      top: 76px;
+      top: 68px;
       padding: 14px 16px 44px;
     }
 
     .character-figure.left {
-      left: 1%;
+      left: 0;
     }
 
     .character-figure.right {
-      right: 1%;
+      right: 0;
     }
 
     .character-figure.center {
-      max-width: 38%;
+      max-width: 36%;
     }
 
     .world-heroine {
-      width: min(34vw, 180px);
+      width: min(32vw, 154px);
+      bottom: 98px;
+      transform: translateX(-50%);
+    }
+
+    .scene-stage {
+      background-position: 64% center;
+    }
+
+    .title-cover,
+    .diary-scene {
+      background-position: center center;
+    }
+
+    .character-figure {
+      bottom: 112px;
+    }
+
+    .character-figure.father,
+    .character-figure.mother {
+      bottom: 124px;
+      height: 44%;
+    }
+
+    .character-figure.male,
+    .character-figure.heroine {
+      bottom: 118px;
+    }
+
+    .scene-stage.scene-cafe,
+    .scene-stage.scene-teahouse,
+    .scene-stage.scene-park {
+      background-position: 58% center;
+    }
+
+    /* 手机端约会页统一人物规则：三位 NPC 共用同一套比例、站位和
+       对白安全距离，不再按单页/单场景分别调。 */
+    [data-screen="dialogue"] .scene-stage {
+      --mobile-dialogue-character-bottom: 146px;
+      --mobile-dialogue-male-height: 51%;
+      --mobile-dialogue-heroine-height: 50%;
+      --mobile-dialogue-male-width: 52%;
+      --mobile-dialogue-heroine-width: 40%;
+      --mobile-dialogue-response-bottom: calc(230px + env(safe-area-inset-bottom, 0px));
+      --mobile-dialogue-response-max-height: min(44vh, 340px);
+      --mobile-dialogue-tray-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+
+    [data-screen="dialogue"] .character-figure {
+      bottom: var(--mobile-dialogue-character-bottom);
+    }
+
+    [data-screen="dialogue"] .character-figure.left {
+      left: -2%;
+    }
+
+    [data-screen="dialogue"] .character-figure.right {
+      right: -2%;
+    }
+
+    [data-screen="dialogue"] .character-figure.male {
+      bottom: var(--mobile-dialogue-character-bottom);
+      height: var(--mobile-dialogue-male-height);
+      max-width: var(--mobile-dialogue-male-width);
+    }
+
+    [data-screen="dialogue"] .character-figure.heroine {
+      bottom: var(--mobile-dialogue-character-bottom);
+      height: var(--mobile-dialogue-heroine-height);
+      max-width: var(--mobile-dialogue-heroine-width);
+    }
+
+    [data-screen="dialogue"] .response-panel {
+      bottom: var(--mobile-dialogue-response-bottom);
+      max-height: var(--mobile-dialogue-response-max-height);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      align-content: start;
+      grid-auto-rows: min-content;
+      padding: 0 6px calc(26px + env(safe-area-inset-bottom, 0px)) 0;
+    }
+
+    [data-screen="dialogue"] .dialogue-tray {
+      bottom: var(--mobile-dialogue-tray-bottom);
+      padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .selection-shell {
+      place-items: start center;
+      padding: 82px 14px 78px;
+    }
+
+    .selection-row {
+      gap: 8px;
+      max-width: min(100%, 340px);
+      margin-top: 0;
+    }
+
+    .pick-stage {
+      min-height: 168px;
+      border-radius: 16px;
+    }
+
+    .pick-stage::after {
+      height: 88px;
+    }
+
+    .pick-stage .character-art {
+      height: clamp(112px, 17vh, 142px);
+      max-width: 84%;
+      bottom: 18px;
+    }
+
+    .pick-name {
+      bottom: 12px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+    }
+
+    .pick-badge {
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      font-size: 10px;
+    }
+
+    .topbar {
+      padding: 14px 16px;
+      align-items: flex-start;
+    }
+
+    .topbar .meta {
+      max-width: 52vw;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .topbar-actions {
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: 42vw;
+    }
+
+    .topbar .btn,
+    .topbar-actions .btn {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .topbar .audio-chip,
+    .topbar-actions .audio-chip {
+      padding: 8px 10px;
+      font-size: 11px;
+    }
+
+    .dialogue-tray-controls > div {
+      align-items: flex-start !important;
+      gap: 8px !important;
+      flex-direction: column;
+    }
+
+    .response-btn {
+      min-height: 92px;
+      padding: 14px 16px 14px 18px;
+    }
+
+    .response-btn strong {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .response-btn span {
+      font-size: 13px;
+      line-height: 1.55;
     }
 
     .diary-sheet {
@@ -1643,6 +1845,121 @@
     .diary-sheet p {
       font-size: 21px;
       line-height: 2;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .title-cover {
+      background-position: 18% 34%;
+    }
+
+    .title-text-block {
+      max-width: min(56%, 212px);
+    }
+
+    .title-text-block h1 {
+      font-size: clamp(30px, 8vw, 38px);
+    }
+
+    .character-figure {
+      bottom: 118px;
+    }
+
+    .character-figure.left,
+    .character-figure.right {
+      max-width: 44%;
+    }
+
+    .character-figure.father,
+    .character-figure.mother {
+      bottom: 132px;
+      height: 42%;
+    }
+
+    .character-figure.male,
+    .character-figure.heroine {
+      bottom: 124px;
+      max-width: 42%;
+    }
+
+    .scene-stage {
+      background-position: 67% center;
+    }
+
+    .scene-stage.scene-cafe,
+    .scene-stage.scene-teahouse,
+    .scene-stage.scene-park {
+      background-position: 61% center;
+    }
+
+    [data-screen="dialogue"] .scene-stage {
+      --mobile-dialogue-character-bottom: 152px;
+      --mobile-dialogue-male-height: 49%;
+      --mobile-dialogue-heroine-height: 48%;
+      --mobile-dialogue-male-width: 50%;
+      --mobile-dialogue-heroine-width: 40%;
+      --mobile-dialogue-response-bottom: calc(214px + env(safe-area-inset-bottom, 0px));
+      --mobile-dialogue-response-max-height: min(42vh, 308px);
+      --mobile-dialogue-tray-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    }
+
+    [data-screen="dialogue"] .character-figure.left {
+      left: -3%;
+    }
+
+    [data-screen="dialogue"] .character-figure.right {
+      right: -3%;
+    }
+
+    [data-screen="dialogue"] .response-panel {
+      gap: 10px;
+      padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+
+    [data-screen="dialogue"] .dialogue-tray {
+      padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .world-heroine {
+      left: 48%;
+      width: min(31vw, 140px);
+      bottom: 92px;
+    }
+
+    .selection-shell {
+      padding: 80px 12px 74px;
+    }
+
+    .selection-row {
+      max-width: 100%;
+    }
+
+    .pick-stage {
+      min-height: 154px;
+    }
+
+    .pick-stage .character-art {
+      height: clamp(102px, 15.5vh, 130px);
+    }
+
+    .response-panel {
+      bottom: 164px;
+      max-height: min(40vh, 292px);
+      gap: 10px;
+    }
+
+    .dialogue-tray {
+      bottom: 60px;
+      padding: 14px 14px 16px;
+    }
+
+    .news-chip {
+      max-width: min(46vw, 150px);
+      padding: 8px 10px;
+    }
+
+    .topbar .meta {
+      max-width: 48vw;
     }
   }
 
