@@ -1,0 +1,12 @@
+.agents/
+.claude/
+.impeccable/
+
+__*
+*.bak
+
+_cutout_test/
+_backup_release_v0.5_*/
+
+.DS_Store
+Thumbs.db
