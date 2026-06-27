@@ -34,6 +34,25 @@ http://localhost:8000/prototype.html
 - `assets/`：场景、海报、物件、音频等资源
 - `docs/`：项目状态和开发过程文档
 
+## 项目维护规则
+
+- 每次修改前先阅读 `README.md`、`docs/archives/`、`docs/reports/`，以及当前任务直接相关的文件。
+- 每次修改前必须先执行 `git status`。
+- 根目录不要继续堆放新的报告类 Markdown；临时报告统一放到 `docs/reports/`。
+- 过期文档统一移入 `docs/archives/`，不要直接删除。
+- 每次修改后都要说明改了哪些文件。
+- 每完成一个独立任务，执行一次 commit。
+- commit message 规范：
+  - `feat:` 新功能
+  - `fix:` 修复问题
+  - `ui:` 界面优化
+  - `docs:` 文档更新
+  - `chore:` 项目整理
+  - `release:` 发布版本
+- 未经确认，不删除源码、素材、对白文本或 `README.md`。
+- 未经明确要求，不重写核心业务逻辑。
+- 如果发现 Git 异常，必须先停止并报告，不能自行强推。
+
 ## 已知边界
 
 - 当前发布版本主流程覆盖 Day 1-3
