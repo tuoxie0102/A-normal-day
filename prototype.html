@@ -854,6 +854,76 @@
     display: none;
   }
 
+  .cutscene-panel {
+    position: absolute;
+    left: 50%;
+    top: 108px;
+    transform: translateX(-50%);
+    width: min(64%, 620px);
+    max-width: 620px;
+    padding: 18px 18px 20px;
+    border-radius: calc(var(--radius-lg) + 2px);
+    background: linear-gradient(180deg, rgba(15, 13, 11, 0.88), rgba(11, 10, 9, 0.84));
+    border: 1px solid rgba(215, 176, 118, 0.22);
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.42),
+      var(--shadow-inset);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 4;
+    animation: narrationFade 380ms var(--ease-out);
+  }
+
+  .cutscene-panel[hidden] {
+    display: none;
+  }
+
+  .cutscene-media-frame {
+    margin: 0;
+    overflow: hidden;
+    border-radius: calc(var(--radius-lg) - 4px);
+    background:
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 48%),
+      linear-gradient(180deg, rgba(34, 29, 24, 0.96), rgba(17, 15, 13, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    aspect-ratio: 16 / 9;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 12px 28px rgba(0, 0, 0, 0.26);
+  }
+
+  .cutscene-media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #090807;
+  }
+
+  .cutscene-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .cutscene-label {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .cutscene-caption {
+    margin: 6px 0 0;
+    color: #eadcc6;
+    font-size: 14px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
   .narration-label {
     display: inline-block;
     margin: 0 0 12px 14px;
@@ -1624,8 +1694,8 @@
     }
 
     .response-panel {
-      bottom: 172px;
-      max-height: min(42vh, 320px);
+      bottom: 164px;
+      max-height: min(46vh, 336px);
       overflow-y: auto;
       align-content: start;
       padding-right: 4px;
@@ -1633,7 +1703,7 @@
 
     .dialogue-tray {
       bottom: 64px;
-      padding: 16px 16px 18px;
+      padding: 14px 14px 16px;
     }
 
     .narration-panel {
@@ -1643,6 +1713,23 @@
       width: min(88%, 460px);
       top: 68px;
       padding: 14px 16px 44px;
+    }
+
+    .cutscene-panel {
+      top: 82px;
+      width: min(90%, 480px);
+      padding: 14px 14px 16px;
+    }
+
+    .cutscene-meta {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cutscene-caption {
+      font-size: 13px;
+      line-height: 1.65;
     }
 
     .character-figure.left {
@@ -1696,13 +1783,13 @@
     /* 手机端约会页统一人物规则：三位 NPC 共用同一套比例、站位和
        对白安全距离，不再按单页/单场景分别调。 */
     [data-screen="dialogue"] .scene-stage {
-      --mobile-dialogue-character-bottom: 146px;
+      --mobile-dialogue-character-bottom: 140px;
       --mobile-dialogue-male-height: 51%;
       --mobile-dialogue-heroine-height: 50%;
       --mobile-dialogue-male-width: 52%;
       --mobile-dialogue-heroine-width: 40%;
-      --mobile-dialogue-response-bottom: calc(230px + env(safe-area-inset-bottom, 0px));
-      --mobile-dialogue-response-max-height: min(44vh, 340px);
+      --mobile-dialogue-response-bottom: calc(214px + env(safe-area-inset-bottom, 0px));
+      --mobile-dialogue-response-max-height: min(48vh, 360px);
       --mobile-dialogue-tray-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -1748,7 +1835,7 @@
 
     .selection-shell {
       place-items: start center;
-      padding: 82px 14px 78px;
+      padding: 76px 12px 70px;
     }
 
     .selection-row {
@@ -1797,22 +1884,22 @@
     }
 
     .topbar-actions {
-      gap: 6px;
+      gap: 4px;
       flex-wrap: wrap;
       justify-content: flex-end;
-      max-width: 42vw;
+      max-width: 46vw;
     }
 
     .topbar .btn,
     .topbar-actions .btn {
-      padding: 8px 12px;
-      font-size: 12px;
+      padding: 7px 10px;
+      font-size: 11px;
     }
 
     .topbar .audio-chip,
     .topbar-actions .audio-chip {
-      padding: 8px 10px;
-      font-size: 11px;
+      padding: 7px 9px;
+      font-size: 10px;
     }
 
     .dialogue-tray-controls > div {
@@ -1821,19 +1908,31 @@
       flex-direction: column;
     }
 
+    .dialogue-speaker {
+      margin-bottom: 8px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+    }
+
+    .tray-text,
+    .narration-text {
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
     .response-btn {
-      min-height: 92px;
-      padding: 14px 16px 14px 18px;
+      min-height: 84px;
+      padding: 12px 14px 12px 16px;
     }
 
     .response-btn strong {
-      font-size: 14px;
-      margin-bottom: 6px;
+      font-size: 13px;
+      margin-bottom: 5px;
     }
 
     .response-btn span {
-      font-size: 13px;
-      line-height: 1.55;
+      font-size: 12px;
+      line-height: 1.48;
     }
 
     .diary-sheet {
@@ -1893,13 +1992,13 @@
     }
 
     [data-screen="dialogue"] .scene-stage {
-      --mobile-dialogue-character-bottom: 152px;
-      --mobile-dialogue-male-height: 49%;
-      --mobile-dialogue-heroine-height: 48%;
+      --mobile-dialogue-character-bottom: 144px;
+      --mobile-dialogue-male-height: 47%;
+      --mobile-dialogue-heroine-height: 46%;
       --mobile-dialogue-male-width: 50%;
       --mobile-dialogue-heroine-width: 40%;
-      --mobile-dialogue-response-bottom: calc(214px + env(safe-area-inset-bottom, 0px));
-      --mobile-dialogue-response-max-height: min(42vh, 308px);
+      --mobile-dialogue-response-bottom: calc(198px + env(safe-area-inset-bottom, 0px));
+      --mobile-dialogue-response-max-height: min(50vh, 332px);
       --mobile-dialogue-tray-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -1920,6 +2019,16 @@
       padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     }
 
+    .cutscene-panel {
+      top: 74px;
+      width: min(92%, 420px);
+      padding: 12px 12px 14px;
+    }
+
+    .cutscene-media-frame {
+      aspect-ratio: 9 / 16;
+    }
+
     .world-heroine {
       left: 48%;
       width: min(31vw, 140px);
@@ -1927,7 +2036,7 @@
     }
 
     .selection-shell {
-      padding: 80px 12px 74px;
+      padding: 72px 10px 68px;
     }
 
     .selection-row {
@@ -1943,14 +2052,14 @@
     }
 
     .response-panel {
-      bottom: 164px;
-      max-height: min(40vh, 292px);
-      gap: 10px;
+      bottom: 156px;
+      max-height: min(46vh, 320px);
+      gap: 8px;
     }
 
     .dialogue-tray {
       bottom: 60px;
-      padding: 14px 14px 16px;
+      padding: 12px 12px 14px;
     }
 
     .news-chip {
@@ -1960,6 +2069,30 @@
 
     .topbar .meta {
       max-width: 48vw;
+    }
+
+    .topbar-actions {
+      max-width: 50vw;
+    }
+
+    .response-btn {
+      min-height: 78px;
+      padding: 11px 12px 11px 14px;
+    }
+
+    .response-btn strong {
+      font-size: 12px;
+    }
+
+    .response-btn span {
+      font-size: 11px;
+      line-height: 1.42;
+    }
+
+    .tray-text,
+    .narration-text {
+      font-size: 14px;
+      line-height: 1.65;
     }
   }
 
@@ -2298,6 +2431,15 @@ function characterFigure(key, alt, placementClass, extraClasses = "") {
   `;
 }
 
+function prefersMobileDialogueMedia() {
+  return typeof window.matchMedia === "function"
+    && window.matchMedia("(max-width: 820px)").matches;
+}
+
+function cutsceneAssetPath(primary, mobile = "") {
+  return prefersMobileDialogueMedia() && mobile ? mobile : primary;
+}
+
 function renderAudioChip() {
   const currentConfig = currentAudioConfigForState();
   const audioTypeLabel = currentConfig && currentConfig.kind === "news" ? "新闻" : "BGM";
@@ -2485,11 +2627,14 @@ const STATE = {
   dialogueStepIndex: 0,
   selectedResponseIndex: null,
   lastChoiceTone: "A",
+  cutsceneStepKey: "",
+  cutsceneStatus: "idle",
   sceneJustEntered: true,
   debugLastBlockTag: null
 };
 
 let dialogueTimer = null;
+let cutsceneTimer = null;
 
 function debugLog(message, payload) {
   if (!DEBUG_DIALOGUE) return;
@@ -2502,6 +2647,7 @@ function debugLog(message, payload) {
 
 function setScreen(screen) {
   clearDialogueTimer();
+  clearCutsceneTimer();
   STATE.screen = screen;
   STATE.sceneJustEntered = true;
 }
@@ -2513,10 +2659,24 @@ function clearDialogueTimer() {
   }
 }
 
+function clearCutsceneTimer() {
+  if (cutsceneTimer) {
+    clearTimeout(cutsceneTimer);
+    cutsceneTimer = null;
+  }
+}
+
+function resetCutsceneState() {
+  clearCutsceneTimer();
+  STATE.cutsceneStepKey = "";
+  STATE.cutsceneStatus = "idle";
+}
+
 function resetDialogueBlock() {
   STATE.dialoguePhase = "sequence";
   STATE.dialogueStepIndex = 0;
   STATE.selectedResponseIndex = null;
+  resetCutsceneState();
 }
 
 function getNpc(id) {
@@ -2603,6 +2763,11 @@ function currentDialogueStep() {
   const block = currentBlock();
   if (!block || !Array.isArray(block.steps)) return null;
   return block.steps[STATE.dialogueStepIndex] || null;
+}
+
+function currentDialogueStepKey(step = currentDialogueStep()) {
+  if (!step || !STATE.selectedNpcId) return "";
+  return `${STATE.selectedNpcId}:${STATE.blockIndex}:${STATE.dialogueStepIndex}:${step.kind}:${step.src || step.text || ""}`;
 }
 
 function entranceClass(side) {
@@ -2722,6 +2887,61 @@ function normalizeNarrationLine(line) {
   );
 }
 
+function coerceDirectiveValue(raw) {
+  const value = String(raw || "").trim();
+  if (!value) return "";
+  if ((value.startsWith("\"") && value.endsWith("\"")) || (value.startsWith("'") && value.endsWith("'"))) {
+    return value.slice(1, -1).replace(/\\(["'])/g, "$1");
+  }
+  if (value === "true") return true;
+  if (value === "false") return false;
+  if (/^-?\d+(?:\.\d+)?$/.test(value)) return Number(value);
+  return value;
+}
+
+function parseDirectiveAttributes(raw) {
+  const attrs = {};
+  const pattern = /([A-Za-z][\w-]*)\s*=\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[^\s}]+)/g;
+  let match;
+  while ((match = pattern.exec(String(raw || "")))) {
+    attrs[match[1]] = coerceDirectiveValue(match[2]);
+  }
+  return attrs;
+}
+
+function inferCutsceneMediaType(src, fallbackType = "") {
+  const explicit = String(fallbackType || "").trim().toLowerCase();
+  if (explicit) return explicit;
+  const extension = String(src || "").split("?")[0].split(".").pop()?.toLowerCase() || "";
+  if (["mp4", "webm", "mov", "m4v", "ogv"].includes(extension)) return "video";
+  if (["gif", "webp", "apng", "png", "jpg", "jpeg", "avif"].includes(extension)) return "animated-image";
+  return "video";
+}
+
+function parseEmbeddedStepDirective(line) {
+  const match = String(line || "").trim().match(/^\{\{\s*(video|cutscene)\b([\s\S]*?)\}\}$/i);
+  if (!match) return null;
+  const nodeType = match[1].toLowerCase();
+  const attrs = parseDirectiveAttributes(match[2]);
+  const src = String(attrs.src || "").trim();
+  if (!src) return null;
+  return {
+    kind: "cutscene",
+    nodeType,
+    mediaType: inferCutsceneMediaType(src, attrs.mediaType || attrs.type),
+    src,
+    mobileSrc: String(attrs.mobileSrc || attrs.mobile || "").trim(),
+    poster: String(attrs.poster || "").trim(),
+    mobilePoster: String(attrs.mobilePoster || attrs.posterMobile || "").trim(),
+    label: String(attrs.label || "剧情过渡").trim(),
+    caption: String(attrs.caption || "").trim(),
+    duration: Number(attrs.duration) > 0 ? Number(attrs.duration) : 0,
+    waitUntilEnd: attrs.waitUntilEnd !== false,
+    muted: attrs.muted !== false,
+    loop: attrs.loop === true
+  };
+}
+
 function parseSectionSequence(section) {
   const lines = String(section || "").split(/\r?\n/);
   const items = [];
@@ -2740,6 +2960,12 @@ function parseSectionSequence(section) {
 
     if (isPureSystemMarker(line)) continue;
     if (isDevMetaParagraph(line)) continue;
+
+    const directiveStep = parseEmbeddedStepDirective(line);
+    if (directiveStep) {
+      items.push(directiveStep);
+      continue;
+    }
 
     const observation = extractAutoPlayObservation(line);
     if (observation) {
@@ -3364,6 +3590,40 @@ function lastDialogueStep(steps, endIndex) {
   return null;
 }
 
+function renderCutsceneMarkup(step) {
+  if (!step || step.kind !== "cutscene") return "";
+  const src = cutsceneAssetPath(step.src, step.mobileSrc);
+  const poster = cutsceneAssetPath(step.poster, step.mobilePoster);
+  const statusLabel = STATE.cutsceneStatus === "done" ? "播放完成" : "过渡播放中";
+  const caption = step.caption ? `<p class="cutscene-caption">${escapeHtml(step.caption)}</p>` : "";
+  const mediaMarkup = step.mediaType === "video"
+    ? `
+      <video
+        class="cutscene-media"
+        data-cutscene-media="true"
+        playsinline
+        preload="auto"
+        ${step.muted ? "muted" : ""}
+        ${step.loop ? "loop" : ""}
+        ${poster ? `poster="${escapeHtml(poster)}"` : ""}
+      >
+        <source src="${escapeHtml(src)}">
+      </video>
+    `
+    : `<img class="cutscene-media" data-cutscene-media="true" src="${escapeHtml(src)}" alt="${escapeHtml(step.label || "剧情过渡")}">`;
+
+  return `
+    <figure class="cutscene-media-frame">${mediaMarkup}</figure>
+    <div class="cutscene-meta">
+      <div>
+        <div class="cutscene-label">${escapeHtml(step.label || "剧情过渡")}</div>
+        ${caption}
+      </div>
+      <span class="status-chip">${statusLabel}</span>
+    </div>
+  `;
+}
+
 function renderDialogueOverlay(npc, dialogue, block) {
   if (!dialogue || !block) {
     return {
@@ -3373,7 +3633,8 @@ function renderDialogueOverlay(npc, dialogue, block) {
       trayMarkup: `
         <div class="dialogue-speaker">Runtime Error</div>
         <p class="tray-text fade-in">当前对白 Block 读取失败，请返回对象选择后重试。</p>
-      `
+      `,
+      cutsceneMarkup: ""
     };
   }
   const currentStep = currentDialogueStep();
@@ -3385,6 +3646,7 @@ function renderDialogueOverlay(npc, dialogue, block) {
   let controlsMarkup = "";
   let responseMarkup = "";
   let trayMarkup = "";
+  let cutsceneMarkup = "";
 
   if (STATE.dialoguePhase === "sequence" && currentStep) {
     if (currentStep.kind === "narration") {
@@ -3403,6 +3665,14 @@ function renderDialogueOverlay(npc, dialogue, block) {
         <div class="dialogue-speaker">${escapeHtml(currentStep.speaker)}</div>
         <p class="tray-text fade-in">${escapeHtml(currentStep.text)}</p>
       `;
+    } else if (currentStep.kind === "cutscene") {
+      cutsceneMarkup = renderCutsceneMarkup(currentStep);
+      if (STATE.cutsceneStatus === "done") {
+        controlsMarkup = `
+          <span class="status-chip">过渡完成</span>
+          <button class="btn primary" data-action="continue-dialogue">继续</button>
+        `;
+      }
     }
   } else if (STATE.dialoguePhase === "response") {
     controlsMarkup = lastSpoken ? `<span class="status-chip">请选择你的回应</span>` : "";
@@ -3435,7 +3705,8 @@ function renderDialogueOverlay(npc, dialogue, block) {
     narrationMarkup,
     controlsMarkup,
     responseMarkup,
-    trayMarkup
+    trayMarkup,
+    cutsceneMarkup
   };
 }
 
@@ -3458,6 +3729,7 @@ function renderDialogueShell() {
         </div>
         ${characterFigure(npc.portrait, npc.name, `left ${entranceClass("left")}`)}
         ${characterFigure(heroineKey, "女主", `right ${entranceClass("right")}`)}
+        <div class="cutscene-panel" id="dialogue-cutscene-shell" hidden><div id="dialogue-cutscene-content"></div></div>
         <div class="narration-panel" id="dialogue-narration-shell" hidden>
           <div id="dialogue-narration-content"></div>
           <button class="narration-continue" data-action="continue-dialogue">继续</button>
@@ -3496,6 +3768,8 @@ function mountDialogueScreen(app) {
 }
 
 function patchDialogueScreen() {
+  const cutsceneShell = document.getElementById("dialogue-cutscene-shell");
+  const cutsceneContent = document.getElementById("dialogue-cutscene-content");
   const narrationShell = document.getElementById("dialogue-narration-shell");
   const narrationContent = document.getElementById("dialogue-narration-content");
   const controlsShell = document.getElementById("dialogue-controls-shell");
@@ -3505,12 +3779,13 @@ function patchDialogueScreen() {
   const trayShell = document.getElementById("dialogue-tray-shell");
   const trayContent = document.getElementById("dialogue-tray-content");
   const stage = document.querySelector("[data-dialogue-stage='true']");
-  if (!narrationShell || !narrationContent || !controlsShell || !controlsContent || !responseShell || !responseContent || !trayShell || !trayContent || !stage) return false;
+  if (!cutsceneShell || !cutsceneContent || !narrationShell || !narrationContent || !controlsShell || !controlsContent || !responseShell || !responseContent || !trayShell || !trayContent || !stage) return false;
   const npc = getNpc(STATE.selectedNpcId);
   const currentSceneKey = stage.closest(".screen")?.dataset.sceneKey;
   if (!npc || currentSceneKey !== npc.id) return false;
   const dialogue = currentDialogue();
   const block = currentBlock();
+  const currentStep = currentDialogueStep();
   const audioChip = typeof stage.querySelector === "function"
     ? stage.querySelector("[data-audio-chip='true']")
     : null;
@@ -3518,14 +3793,24 @@ function patchDialogueScreen() {
   if (audioChip) {
     audioChip.textContent = AUDIO_STATE.playing ? `⏸ 暂停${currentAudioConfigForState()?.kind === "news" ? "新闻" : "BGM"}` : `🔊 继续${currentAudioConfigForState()?.kind === "news" ? "新闻" : "BGM"}`;
   }
+  cutsceneContent.innerHTML = overlay.cutsceneMarkup;
   narrationContent.innerHTML = overlay.narrationMarkup;
   controlsContent.innerHTML = overlay.controlsMarkup;
   responseContent.innerHTML = overlay.responseMarkup;
   trayContent.innerHTML = overlay.trayMarkup;
+  cutsceneShell.hidden = !overlay.cutsceneMarkup;
   narrationShell.hidden = !overlay.narrationMarkup;
   controlsShell.hidden = !overlay.controlsMarkup;
   responseShell.hidden = !overlay.responseMarkup;
-  trayShell.hidden = !overlay.trayMarkup;
+  // The controls shell is rendered inside dialogue-tray-shell. After a cutscene
+  // finishes we intentionally show only the "继续" control (no tray text), so
+  // the tray container must stay mounted whenever controls exist.
+  trayShell.hidden = !overlay.trayMarkup && !overlay.controlsMarkup;
+  if (currentStep?.kind === "cutscene") {
+    syncCutscenePlayback(currentStep, cutsceneShell);
+  } else if (STATE.cutsceneStepKey || STATE.cutsceneStatus !== "idle") {
+    resetCutsceneState();
+  }
   // "跳过寒暄" (Round 10 redesign): visible across the entire conversation in
   // sequence phase, hidden during response/reaction (player decision + NPC
   // reaction are the moments the spec explicitly forbids skipping). Also
@@ -3545,10 +3830,77 @@ function patchDialogueScreen() {
     // Show whenever the player is in sequence AND either has more steps in
     // this block to fast-forward through, or is before the configured core
     // entry (cross-block jump).
-    const showSkip = inSequence && (hasMoreToSkip || beforeCore);
+    const showSkip = inSequence && currentStep?.kind !== "cutscene" && (hasMoreToSkip || beforeCore);
     skipBtn.hidden = !showSkip;
   }
   return true;
+}
+
+function completeCutsceneStep(stepKey) {
+  if (!stepKey || STATE.cutsceneStepKey !== stepKey || STATE.cutsceneStatus === "done") return;
+  clearCutsceneTimer();
+  STATE.cutsceneStatus = "done";
+  render();
+}
+
+function syncCutscenePlayback(step, shell) {
+  if (!step || step.kind !== "cutscene" || !shell) return;
+  const stepKey = currentDialogueStepKey(step);
+  if (!stepKey) return;
+  const mediaEl = shell.querySelector("[data-cutscene-media='true']");
+  if (!mediaEl) return;
+
+  if (STATE.cutsceneStepKey !== stepKey) {
+    clearCutsceneTimer();
+    STATE.cutsceneStepKey = stepKey;
+    STATE.cutsceneStatus = "playing";
+  }
+
+  if (STATE.cutsceneStatus !== "playing") return;
+
+  const finish = () => completeCutsceneStep(stepKey);
+  const fallbackDelay = step.duration > 0 ? step.duration : 0;
+  const shouldWaitForPlaybackEnd = step.waitUntilEnd !== false;
+
+  if (step.mediaType === "video") {
+    if (mediaEl.dataset.cutsceneBoundKey !== stepKey) {
+      mediaEl.dataset.cutsceneBoundKey = stepKey;
+      mediaEl.currentTime = 0;
+      mediaEl.onended = () => finish();
+      mediaEl.onerror = () => {
+        if (fallbackDelay > 0) return;
+        finish();
+      };
+      const playPromise = typeof mediaEl.play === "function" ? mediaEl.play() : null;
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          if (fallbackDelay > 0) return;
+          finish();
+        });
+      }
+    }
+    if (!shouldWaitForPlaybackEnd) {
+      if (fallbackDelay > 0) {
+        clearCutsceneTimer();
+        cutsceneTimer = setTimeout(finish, fallbackDelay);
+      } else {
+        finish();
+      }
+      return;
+    }
+    if (fallbackDelay > 0) {
+      clearCutsceneTimer();
+      cutsceneTimer = setTimeout(finish, fallbackDelay);
+    }
+    return;
+  }
+
+  if (fallbackDelay <= 0) {
+    finish();
+    return;
+  }
+  clearCutsceneTimer();
+  cutsceneTimer = setTimeout(finish, fallbackDelay);
 }
 
 function renderDiary() {
@@ -3684,6 +4036,7 @@ function advanceBreakfast() {
 
 function continueDialogue() {
   const block = currentBlock();
+  const currentStep = currentDialogueStep();
   if (!block) return;
   if (!Array.isArray(block.steps) || block.steps.length === 0) {
     STATE.dialoguePhase = "response";
@@ -3691,6 +4044,7 @@ function continueDialogue() {
     return;
   }
   if (STATE.dialoguePhase !== "sequence") return;
+  if (currentStep?.kind === "cutscene" && STATE.cutsceneStatus !== "done") return;
   if (STATE.dialogueStepIndex < block.steps.length - 1) {
     STATE.dialogueStepIndex += 1;
   } else {
@@ -3772,6 +4126,7 @@ function nextBlock() {
 
 function resetRun() {
   clearDialogueTimer();
+  clearCutsceneTimer();
   STATE.breakfastIndex = 0;
   STATE.breakfastDay = 1;
   STATE.selectedNpcId = null;
@@ -3792,6 +4147,7 @@ function resetRun() {
 function advanceToNextDay() {
   if (STATE.breakfastDay >= BREAKFAST_DAY_LIMIT) return;
   clearDialogueTimer();
+  clearCutsceneTimer();
   STATE.breakfastDay += 1;
   STATE.breakfastIndex = 0;
   STATE.selectedNpcId = null;
